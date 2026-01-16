@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const { createClient } = require('@supabase/supabase-js');
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const { createClient } = require("@supabase/supabase-js");
 
 // Load environment variables
 dotenv.config();
@@ -20,17 +20,17 @@ const supabase = createClient(
 );
 
 // Health check route
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'quickBasket API is running!' });
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", message: "quickBasket API is running!" });
 });
 
 // Get all categories
-app.get('/api/categories', async (req, res) => {
+app.get("/api/categories", async (req, res) => {
   try {
     const { data, error } = await supabase
-      .from('categories')
-      .select('*')
-      .order('name');
+      .from("categories")
+      .select("*")
+      .order("name");
 
     if (error) throw error;
     res.json(data);
@@ -40,12 +40,12 @@ app.get('/api/categories', async (req, res) => {
 });
 
 // Get all products
-app.get('/api/products', async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('name');
+      .from("products")
+      .select("*")
+      .order("name");
 
     if (error) throw error;
     res.json(data);
@@ -55,14 +55,14 @@ app.get('/api/products', async (req, res) => {
 });
 
 // Get products by category
-app.get('/api/products/category/:categoryId', async (req, res) => {
+app.get("/api/products/category/:categoryId", async (req, res) => {
   try {
     const { categoryId } = req.params;
     const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('category_id', categoryId)
-      .order('name');
+      .from("products")
+      .select("*")
+      .eq("category_id", categoryId)
+      .order("name");
 
     if (error) throw error;
     res.json(data);
@@ -72,13 +72,13 @@ app.get('/api/products/category/:categoryId', async (req, res) => {
 });
 
 // Get single product
-app.get('/api/products/:id', async (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('id', id)
+      .from("products")
+      .select("*")
+      .eq("id", id)
       .single();
 
     if (error) throw error;
