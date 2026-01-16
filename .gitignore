@@ -1,5 +1,7 @@
 # Dependencies
 node_modules/
+frontend/node_modules/
+backend/node_modules/
 .pnp
 .pnp.js
 
@@ -7,6 +9,7 @@ node_modules/
 dist/
 dist-ssr/
 build/
+frontend/dist/
 *.local
 
 # Environment variables
@@ -15,6 +18,8 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+frontend/.env
+backend/.env
 
 # Logs
 logs/
@@ -61,3 +66,8 @@ coverage/
 # Misc
 *.pem
 .yarn/
+
+# Package lock files (optional - uncomment if you don't want to track them)
+# package-lock.json
+# frontend/package-lock.json
+# backend/package-lock.json

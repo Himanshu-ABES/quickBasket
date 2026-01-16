@@ -1,119 +1,129 @@
 # 🛒 quickBasket
 
-A pixel-perfect clone of Blinkit (Quick Commerce) built with modern web technologies.
+A full-stack Blinkit clone - Modern grocery delivery web application built with React and Express.
 
-![quickBasket](https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1200&h=400&fit=crop)
-
-## 🚀 Tech Stack
-
-- **Frontend:** React (Vite) + Tailwind CSS
-- **Backend:** Supabase (PostgreSQL, Auth, Realtime)
-- **State Management:** Zustand
-- **Icons:** Lucide React
-- **Animations:** Framer Motion
-
-## 🎨 Design Philosophy
-
-- **Minimalist & Aesthetic:** Heavy use of whitespace
-- **Rounded corners:** `rounded-xl` for cards
-- **Brand Colors:**
-  - Primary Yellow: `#F8CB46` (CTAs)
-  - Green: `#0F8A65` (Veg indicators)
-  - Dark: `#0C0C0C`
+![quickBasket](https://img.shields.io/badge/quickBasket-Grocery%20Delivery-green)
 
 ## 📁 Project Structure
 
 ```
 quickBasket/
-├── src/
-│   ├── components/
-│   │   └── ProductCard.jsx    # Smart product card with ADD/counter
-│   ├── store/
-│   │   └── useCartStore.js    # Zustand cart store with Supabase sync
-│   ├── lib/
-│   │   └── supabase.js        # Supabase client configuration
-│   └── ...
-├── supabase/
-│   └── schema.sql             # Database schema, RLS policies, seed data
-├── tailwind.config.js
-├── package.json
-└── .env.example
+├── frontend/           # React + Vite frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── lib/
+│   │   ├── store/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   └── package.json
+├── backend/            # Express.js backend
+│   ├── src/
+│   │   └── index.js
+│   ├── supabase/
+│   │   └── schema.sql
+│   └── package.json
+├── package.json        # Root package.json
+└── README.md
 ```
 
-## 🗄️ Database Setup
+## 🚀 Tech Stack
 
-1. Create a new project on [Supabase](https://supabase.com)
-2. Go to **SQL Editor** in your Supabase dashboard
-3. Copy and paste the contents of `supabase/schema.sql`
-4. Click **Run** to execute the script
+### Frontend
+- **React 18** - UI library
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Zustand** - State management
+- **Framer Motion** - Animations
+- **Lucide React** - Icons
 
-The script will:
+### Backend
+- **Express.js** - Node.js framework
+- **Supabase** - Database & Authentication
+- **CORS** - Cross-origin requests
 
-- Create `categories`, `products`, and `cart_items` tables
-- Enable Row Level Security (RLS) policies
-- Seed 6 categories with 24 products (4 per category)
+## 🛠️ Installation
 
-## ⚙️ Environment Setup
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+- Supabase account
 
-1. Copy `.env.example` to `.env`:
+### Setup
 
+1. **Clone the repository**
    ```bash
-   cp .env.example .env
+   git clone https://github.com/Himanshu-ABES/quickBasket.git
+   cd quickBasket
    ```
 
-2. Add your Supabase credentials:
+2. **Install dependencies**
+   ```bash
+   # Install root dependencies
+   npm install
+   
+   # Install all project dependencies
+   npm run install:all
    ```
-   VITE_SUPABASE_URL=https://your-project.supabase.co
-   VITE_SUPABASE_ANON_KEY=your-anon-key
+
+3. **Configure environment variables**
+
+   Frontend (`frontend/.env`):
+   ```env
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
-## 🏃‍♂️ Getting Started
+   Backend (`backend/.env`):
+   ```env
+   SUPABASE_URL=your_supabase_project_url
+   SUPABASE_ANON_KEY=your_supabase_anon_key
+   PORT=5000
+   ```
 
-```bash
-# Install dependencies
-npm install
+4. **Setup Supabase Database**
+   - Go to your Supabase project
+   - Run the SQL from `backend/supabase/schema.sql`
 
-# Start development server
-npm run dev
+5. **Run the application**
+   ```bash
+   # Run both frontend and backend
+   npm run dev
+   
+   # Or run separately
+   npm run frontend   # Frontend on http://localhost:5173
+   npm run backend    # Backend on http://localhost:5000
+   ```
 
-# Build for production
-npm run build
-```
+## 📦 Available Scripts
 
-## 🔐 Authentication
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Run both frontend and backend |
+| `npm run frontend` | Run frontend only |
+| `npm run backend` | Run backend only |
+| `npm run install:all` | Install all dependencies |
+| `npm run build` | Build frontend for production |
 
-Cart items are protected by Row Level Security. Users must be authenticated to:
+## ✨ Features
 
-- Add items to cart
-- Update cart quantities
-- Remove items from cart
+- 🏠 Beautiful Blinkit-style homepage
+- 📦 Product categories with images
+- 🛒 Shopping cart with Zustand
+- 🔍 Animated search bar
+- 📱 Fully responsive design
+- ⚡ Fast Vite development
+- 🎨 Tailwind CSS styling
+- 🔄 Smooth animations with Framer Motion
 
-Categories and products are publicly readable.
+## 🤝 Contributing
 
-## 📦 Key Components
-
-### ProductCard.jsx
-
-A smart product card component that:
-
-- Shows "ADD" button when quantity is 0
-- Transforms to quantity counter (- count +) when added
-- Includes Framer Motion scale animations
-- Displays veg/non-veg indicators
-- Shows discount badges
-
-### useCartStore.js
-
-Zustand store with:
-
-- `addItem(product)` - Add product to cart
-- `removeItem(productId)` - Decrease quantity or remove
-- `clearCart()` - Clear all items
-- `selectCartTotal` - Computed cart total
-- `selectItemCount` - Total items count
-- `selectTotalSavings` - Total savings from discounts
-- **Optimistic updates** - UI updates instantly, syncs with Supabase in background
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-MIT
+This project is licensed under the ISC License.
+
+---
+
+Made with ❤️ by [Himanshu-ABES](https://github.com/Himanshu-ABES)
