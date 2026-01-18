@@ -21,6 +21,9 @@ frontend/dist/
 frontend/.env
 backend/.env
 
+# Vercel
+.vercel
+
 # Logs
 logs/
 *.log
